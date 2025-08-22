@@ -1,18 +1,17 @@
 import React, { useState } from "react"
 import Accordion from "./Accordion"
-import { CONSTANTS } from "./constants"
+import { CONSTANTS } from "./constants/constants"
 import Home from "./Home"
 import Footer from "./Footer"
 import Divider from "./Divider"
 
-const TOPICS = {
+export const TOPICS = {
   YAPPING: "YAPPING",
   CHOOSING: "CHOOSING",
   FDM: "FDM",
   SLA: "SLA",
   FILAMENTS: "FILAMENTS",
   FILAMENT_TYPES: "FILAMENT_TYPES",
-  FILAMENT_DRYING: "FILAMENT_DRYING",
   VENTILATION: "VENTILATION",
   FILTRATION: "FILTRATION",
   FENT_OR_VENT: "FENT_OR_VENT",
@@ -26,17 +25,21 @@ const TOPICS = {
   PROBLEMS: "PROBLEMS",
 } as const
 
-type Topic = (typeof TOPICS)[keyof typeof TOPICS]
+export type Topic = (typeof TOPICS)[keyof typeof TOPICS]
 
-const makeDefaultState = () =>
+const makeAll = (value: boolean): Record<Topic, boolean> =>
   Object.values(TOPICS).reduce(
-    (acc, key) => ({ ...acc, [key]: false }),
+    (acc, k) => {
+      acc[k] = value
+      return acc
+    },
     {} as Record<Topic, boolean>
   )
 
 export default function About() {
-  const [openById, setOpenById] =
-    useState<Record<Topic, boolean>>(makeDefaultState())
+  const [openById, setOpenById] = useState<Record<Topic, boolean>>(() =>
+    makeAll(false)
+  )
 
   const toggle = (topic: Topic) => {
     setOpenById((prev) => ({ ...prev, [topic]: !prev[topic] }))
@@ -52,180 +55,131 @@ export default function About() {
     )
   }
 
+  function Section({
+    topic,
+    title,
+    color,
+    children,
+  }: {
+    topic: Topic
+    title: string
+    color?: string
+    children: React.ReactNode
+  }) {
+    return (
+      <Accordion
+        title={title}
+        color={color}
+        open={openById[topic]}
+        setOpen={() => toggle(topic)}
+      >
+        <div className="pt-2">{children}</div>
+      </Accordion>
+    )
+  }
+
   return (
     <div className="w-[100%] flex flex-col justify-center bg-gray-900 text-white">
       <Home />
       <Divider />
-      
 
       <div className="flex flex-col gap-4 w-[70%] mx-auto my-4 whitespace-pre-line">
         <div className="flex justify-end gap-4 my-2">
           <button onClick={() => setAll(true)}>Expand All</button>
           <button onClick={() => setAll(false)}>Collapse All</button>
         </div>
-        <div className="flex justify-center flex-col">
-          <div className="text-2xl">Optional Read</div>
-          <Accordion
-            color="blue"
-            title="My Yapping Session"
-            open={openById[TOPICS.YAPPING]}
-            setOpen={() => toggle(TOPICS.YAPPING)}
-            children={
-              <div className="pt-2 whitespace-pre-line">
-                {CONSTANTS.YAPPING}
-              </div>
-            }
-          />          
-        </div>
+        <Section topic={TOPICS.YAPPING} title="My Yapping Session" color="blue">
+          <div className="whitespace-pre-line">{CONSTANTS.YAPPING}</div>
+        </Section>
 
-        <div className="flex justify-center flex-col">
-          <div className="text-2xl">The Basics</div>
+        <div className="text-2xl">The Basics</div>
+        <div className="flex flex-col w-full gap-4">
+          <Section topic={TOPICS.CHOOSING} title="Choosing Your Printer">
+            {CONSTANTS.PRINTERS}
+          </Section>
 
-          <div className="flex flex-col w-[100%] gap-4">
-            <Accordion
-              title="Choosing Your Printer"
-              open={openById[TOPICS.CHOOSING]}
-              setOpen={() => toggle(TOPICS.CHOOSING)}
-              children={
-                <div className="pt-2">
-                  {CONSTANTS.PRINTERS}
-                </div>
-              }
-            />
-            <Accordion
-              title="Filaments"
-              open={openById[TOPICS.FILAMENTS]}
-              setOpen={() => toggle(TOPICS.FILAMENTS)}
-              children={
-                <div className="pt-4 text-gray-900 dark:text-white flex flex-col gap-4">
-                  <Accordion
-                    title="Types of Filament"
-                    color="slate"
-                    open={openById[TOPICS.FILAMENT_TYPES]}
-                    setOpen={() => toggle(TOPICS.FILAMENT_TYPES)}
-                    children={
-                      <div className="pt-2">
-                        {CONSTANTS.FILAMENTS.TYPES}
-                      </div>
-                    }
-                  />
-                  <Accordion
-                    title="Drying Your Filament"
-                    color="slate"
-                    open={openById[TOPICS.DRYING]}
-                    setOpen={() => toggle(TOPICS.DRYING)}
-                    children={
-                      <div className="pt-2">
-                        {CONSTANTS.FILAMENTS.DRYING}
-                      </div>
-                    }
-                  />
-                  <Accordion
-                    title="Multicolor Printing"
-                    color="slate"
-                    open={openById[TOPICS.MULTICOLOR]}
-                    setOpen={() => toggle(TOPICS.MULTICOLOR)}
-                    children={
-                      <div className="pt-2">
-                        {CONSTANTS.FILAMENTS.MULTICOLOR}
-                      </div>
-                    }
-                  />
-                  {CONSTANTS.FILAMENTS.DESCRIPTION}
-                </div>
-              }
-            />
-          </div>
-        </div>
-        <div className="flex justify-center flex-col">
-          <div className="text-2xl">Safety First</div>
-          <div className="flex flex-col w-[100%] gap-4">
-            <Accordion
-              title="Ventilation vs. Filtration"
-              open={openById[TOPICS.FENT_OR_VENT]}
-              setOpen={() => toggle(TOPICS.FENT_OR_VENT)}
-              children={
-                <div className="pt-4 text-gray-900 dark:text-white flex flex-col gap-4">
-                  <Accordion
-                    title="Ventilation"
-                    color="slate"
-                    open={openById[TOPICS.VENTILATION]}
-                    setOpen={() => toggle(TOPICS.VENTILATION)}
-                    children={
-                      <div className="pt-2">
-                        {CONSTANTS.SAFETY.VENTILATION}
-                      </div>
-                    }
-                  />
-                  <Accordion
-                    title="Filtration"
-                    color="slate"
-                    open={openById[TOPICS.FILTRATION]}
-                    setOpen={() => toggle(TOPICS.FILTRATION)}
-                    children={
-                      <div className="pt-2">
-                        {CONSTANTS.SAFETY.FILTRATION}
-                      </div>
-                    }
-                  />
-                  {CONSTANTS.SAFETY.DESCRIPTION}
-                </div>
-              }
-            />
-            <Accordion
-              title="Enclosures and Fans"
-              open={openById[TOPICS.ENCLOSURE]}
-              setOpen={() => toggle(TOPICS.ENCLOSURE)}
-              children={
-                <div className="pt-4 text-gray-900 dark:text-white flex flex-col gap-4">
-                  <Accordion
-                    title="Fan Speeds and Pressure"
-                    color="slate"
-                    open={openById[TOPICS.FANS]}
-                    setOpen={() => toggle(TOPICS.FANS)}
-                    children={
-                      <div className="pt-2">
-                        {CONSTANTS.SAFETY.FANS}
-                      </div>
-                    }
-                  />
-                  {CONSTANTS.SAFETY.ENCLOSURE}
-                </div>
-              }
-            />
-          </div>
-        </div>
-        <div className="flex justify-center flex-col text-gray-900 dark:text-white ">
-          <div className="text-2xl">That's It!</div>
-          <div className="flex flex-col w-[100%] gap-4">
-            <Accordion
-              title="Start Printing!"
-              open={openById[TOPICS.SOFTWARE]}
-              setOpen={() => toggle(TOPICS.SOFTWARE)}
-              children={
-                <div className="pt-2">
-                  {CONSTANTS.FINALE}
-                </div>
-              }
-            />
+          <Section topic={TOPICS.FILAMENTS} title="Filaments">
+            <div className="pt-4 flex flex-col gap-4">
+              <Section
+                topic={TOPICS.FILAMENT_TYPES}
+                title="Types of Filament"
+                color="slate"
+              >
+                {CONSTANTS.FILAMENTS.TYPES}
+              </Section>
+              <Section
+                topic={TOPICS.DRYING}
+                title="Drying Your Filament"
+                color="slate"
+              >
+                {CONSTANTS.FILAMENTS.DRYING}
+              </Section>
+              <Section
+                topic={TOPICS.MULTICOLOR}
+                title="Multicolor Printing"
+                color="slate"
+              >
+                {CONSTANTS.FILAMENTS.MULTICOLOR}
+              </Section>
+
+              <div className="pt-2">{CONSTANTS.FILAMENTS.DESCRIPTION}</div>
             </div>
+          </Section>
         </div>
 
-        <div className="flex justify-center flex-col text-gray-900 dark:text-white ">
-          <div className="text-2xl">Common Problems & Fixes</div>
-          <div className="flex flex-col w-[100%] gap-4">
-            <Accordion
-              title="WIP"
-              color="red"
-              open={openById[TOPICS.SOFTWARE]}
-              setOpen={() => toggle(TOPICS.SOFTWARE)}
-              children={
-                <div className="pt-2">
-                  {CONSTANTS.PROBLEMS.WIP}
-                </div>
-              }
-            />
+        <div className="text-2xl">Safety First</div>
+        <div className="flex flex-col w-full gap-4">
+          <Section
+            topic={TOPICS.VENT_OR_FILT}
+            title="Ventilation vs. Filtration"
+          >
+            <div className="pt-4 flex flex-col gap-4">
+              <Section
+                topic={TOPICS.VENTILATION}
+                title="Ventilation"
+                color="slate"
+              >
+                {CONSTANTS.SAFETY.VENTILATION}
+              </Section>
+              <Section
+                topic={TOPICS.FILTRATION}
+                title="Filtration"
+                color="slate"
+              >
+                {CONSTANTS.SAFETY.FILTRATION}
+              </Section>
+
+              <div className="pt-2">{CONSTANTS.SAFETY.DESCRIPTION}</div>
             </div>
+          </Section>
+
+          <Section topic={TOPICS.ENCLOSURE} title="Enclosures and Fans">
+            <div className="pt-4 flex flex-col gap-4">
+              <Section
+                topic={TOPICS.FANS}
+                title="Fan Speeds and Pressure"
+                color="slate"
+              >
+                {CONSTANTS.SAFETY.FANS}
+              </Section>
+
+              <div className="pt-2">{CONSTANTS.SAFETY.ENCLOSURE}</div>
+            </div>
+          </Section>
+        </div>
+
+        <div className="text-2xl">That's It!</div>
+        <div className="flex flex-col w-full gap-4">
+          <Section topic={TOPICS.SOFTWARE} title="Start Printing!">
+            {CONSTANTS.FINALE /* make sure this exists */}
+          </Section>
+        </div>
+
+        <div className="text-2xl">Common Problems & Fixes</div>
+        <div className="flex flex-col w-full gap-4">
+          <Section topic={TOPICS.PROBLEMS} title="WIP" color="red">
+            {CONSTANTS.PROBLEMS.WIP}
+          </Section>
         </div>
       </div>
 
