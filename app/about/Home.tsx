@@ -4,7 +4,7 @@ import { CONSTANTS } from "./constants/constants"
 export default function Home() {
   return (
     <section className="bg-white lg:grid lg:h-screen lg:place-content-center dark:bg-gray-900">
-      <div className="mx-auto w-screen max-w-screen-xl px-4 py-24 sm:px-6 sm:py-24 md:grid md:grid-cols-[2fr_3fr] md:items-center lg:px-8 lg:py-32">
+      <div className="mx-auto w-screen max-w-screen-xl px-4 py-24 sm:px-6 sm:py-24 flex flex-col gap-4 lg:grid lg:grid-cols-[2fr_3fr] lg:items-center lg:px-8 lg:py-32">
         <div className="w-[80%] text-left">
           <h1 className="text-4xl font-bold text-gray-900 sm:text-5xl dark:text-white">
             Unofficial Guide Into

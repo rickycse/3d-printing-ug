@@ -83,7 +83,7 @@ export default function About() {
       <Home />
       <Divider />
 
-      <div className="flex flex-col gap-4 w-[70%] mx-auto my-4 whitespace-pre-line">
+      <div className="flex flex-col gap-4 w-[90%] mx-auto my-4 whitespace-pre-line md:w-[80%] lg:w-[70%]">
         <div className="flex justify-end gap-4 my-2">
           <button onClick={() => setAll(true)}>Expand All</button>
           <button onClick={() => setAll(false)}>Collapse All</button>
