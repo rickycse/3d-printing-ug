@@ -75,6 +75,21 @@ const printers = [
   }
 ]
 
+const mySetup = [
+  {
+    name: "Bambu Lab A1 Mini",
+    link: "https://bambulab.com/en-ca/a1-mini",
+  },
+  {
+    name: "Creality Exhaust Kit",
+    link: "https://www.amazon.ca/dp/B0CLYB1ZVZ",
+  },
+  {
+    name: "YOOPAI Enclosure",
+    link: "https://www.amazon.ca/Enclosures-Fireproof-Temperature-Protective-Printer%EF%BC%8825-6/dp/B0BMLD17QF/ref=sr_1_9?s=industrial&sr=1-9",
+  },
+]
+
 export default function Footer() {
   return (
     <footer className="bg-white dark:bg-gray-900">
@@ -137,9 +152,11 @@ export default function Footer() {
             <div className="mt-8 grid grid-cols-1 gap-8 sm:grid-cols-3">
               <Sources title="Helpful Channels" links={helpfulChannels} />
 
-              <Sources title="Enclosures" links={enclosures} />
+              {/* <Sources title="Enclosures" links={enclosures} /> */}
 
               <Sources title="Printers" links={printers} />
+
+              <Sources title="My Setup" links={mySetup} />
 
             </div>
           </div>
