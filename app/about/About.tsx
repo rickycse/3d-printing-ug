@@ -130,7 +130,7 @@ export default function About() {
         <div className="text-2xl">Safety First</div>
         <div className="flex flex-col w-full gap-4">
           <Section
-            topic={TOPICS.VENT_OR_FILT}
+            topic={TOPICS.FENT_OR_VENT}
             title="Ventilation vs. Filtration"
           >
             <div className="pt-4 flex flex-col gap-4">
@@ -171,7 +171,7 @@ export default function About() {
         <div className="text-2xl">That's It!</div>
         <div className="flex flex-col w-full gap-4">
           <Section topic={TOPICS.SOFTWARE} title="Start Printing!">
-            {CONSTANTS.FINALE /* make sure this exists */}
+            {CONSTANTS.FINALE}
           </Section>
         </div>
 
