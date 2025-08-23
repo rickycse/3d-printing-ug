@@ -197,12 +197,12 @@ export default function About() {
           </Section>
         </div>
 
-        <div className="text-2xl">Le Science</div>
+        {/* <div className="text-2xl">Le Science</div>
         <div className="flex flex-col w-full gap-4">
           <Section topic={TOPICS.SCIENCE_WIP} title="WIP" color="green">
             {CONSTANTS.SCIENCE.WIP}
           </Section>
-        </div>
+        </div> */}
 
       </div>
       <Footer />

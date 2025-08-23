@@ -73,7 +73,7 @@ export const CONSTANTS = {
   },
 
   SCIENCE: {
-    WIP: `I wanted to add a section to talk about the science behind 3d printing and some of the health concerns. I haven't done enough research yet, but once I do, I plan on returning this section. If you'd like to contribute, feel free to let me know!`
+    WIP: `I wanted to add a section to talk about the science behind 3d printing and some of the health concerns if you aren't careful. I haven't done enough research yet, but once I do, I plan on returning this section. If you'd like to contribute, feel free to let me know!`
   },
 
   CONCERNS: {
