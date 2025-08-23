@@ -15,6 +15,7 @@ const colorStyles: Record<string, string> = {
   red: "border-red-200 bg-red-50 dark:border-red-700 dark:bg-red-800",
   gray: "border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800",
   slate: "border-slate-200 bg-slate-50 dark:border-slate-600 dark:bg-slate-700",
+  yellow: "border-yellow-200 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-700",
 }
 
 export default function Accordion({

@@ -49,7 +49,9 @@ export const CONSTANTS = {
   SAFETY: {
     VENTILATION: `Ventilation involves using a fan or exhaust system to remove the fumes and particles from the air and vent them outside. Ideally, you should be printing in a well-ventilated area or even outside if possible. If this is not an option for you, then you can use a filtration system to remove as many of the harmful particles and fumes as possible.`,
     FILTRATION: `This should be your LAST option if you want to 3D print. Filtering is more expensive to setup and maintain. If you live in a windowless shoebox or a maximum security prison, you can buy an Air Purifier to remove any of the UFPs (ultrafine particles) and VoCs (volatile organic compounds) that come out of the printing process before pushing air back into the room. Look for purifiers with HEPA and Carbon Filters. Honestly, I'm not even sure how effective this is, so I would not recommend it.`,
-    DESCRIPTION: `When it comes to 3D printing, there's two main ways to deal with the harmful fumes and particles that are emitted during the process: ventilation and/or filtration. If you plan on getting into the hobby, then I would recommend splitting your budget between a good printer, your filaments, a really good ventilation/filtration system. I would even argue that if you can't vent anything out, then you shouldn't be printing at all until you can. The fumes and particles WILL negatively affect your health over time, but if you're doing it anyway despite the warnings, then may God be with you.`,
+    DESCRIPTION: `When it comes to 3D printing, there's two main ways to deal with the harmful fumes and particles that are emitted during the process: ventilation and/or filtration. If you plan on getting into the hobby, then I would recommend splitting your budget between a good printer, your filaments, a really good ventilation/filtration system. I would even argue that if you can't vent anything out, then you shouldn't be printing at all until you can. The fumes and particles WILL negatively affect your health over time, but if you're doing it anyway despite the warnings, then may God be with you.
+    
+    I chose to vent out because I already had my enclosure next to a window and because I heard that HEPA and Carbon Filters don't exactly catch everything.`,
 
     ENCLOSURE: `Some printers like the Bambu X1C and P1S already come with enclosures, but if you're buying a Creality Ender 3 Pro or Bambu A1 series printer, then you might want to buy one. Enclosures keep dust off your printers, maintain stable ambient temperatures to prevent wraping, and protects your house from any potential fires (extremely rare). Since the A1 Mini has its own onboard fan ( not to be confused with the A1! ), I chose to enclose my printer with an exhaust fan blowing out my window.
     
@@ -63,6 +65,18 @@ export const CONSTANTS = {
   FINALE: `You've got your printer, got your filaments, and setup your enclosure. You're finally ready to get into the fun part, printing (and maybe modeling)! Honestly, I don't have much of an opinion or guide here, use whatever software works for you! Personally, I've been using Fusion360 to model everything, but I've heard that onShape is a good alternative as well.`,
 
   PROBLEMS: {
-    WIP: `I wanted to make a section for common problems like the blob of death, poor bed adhesion, and more. Luckily, I haven't run into any of these issues… yet. But if I do, I'll post some solutions here as well.`
+    WIP: `I wanted to make a section for common problems like the blob of death, poor bed adhesion, and more. Luckily, I haven't run into any of these issues… yet. But if I do, I'll post some solutions here as well.`,
+
+    LINGERING_FUMES: `If you still smell or taste lingering fumes even though your printer is enclosed, your fans on, and your tent is shrinking (from negative pressure), then you might not have enough air coming into the enclosure to properly vent/filter out. I'm not a scientist, but what's worked for me is opening a small hole (from the opposite side of my exhaust fan) to allow more air to come in. Ideally, your enclosure should still have enough negative pressure (tent should shrink a bit) to prevent fumes from going all over the place, but not too much that fumes will linger. 
+    
+    You can also either add a passive intake fan on the opposite side of your enclosure or slow down your exhaust fan speed to fix this (assuming your fan came with a controller). The general idea here is that if air is being pushed out, then you also need fresh air to be pushed in to replace it.`
+  },
+
+  SCIENCE: {
+    WIP: `I wanted to add a section to talk about the science behind 3d printing and some of the health concerns. I haven't done enough research yet, but once I do, I plan on returning this section. If you'd like to contribute, feel free to let me know!`
+  },
+
+  CONCERNS: {
+    FOOD_SAFETY: `As far as I know, 3D printed objects are not truly food-safe. The filament you print with (usually PLA) can be graded food-safe, but the layer lines from printing will say otherwise. These tiny layer lines and gaps can trap bacteria and make it difficult to clean, so while you could drink from your 3D printed cup, you wouldn't be to really clean it and drink from it again and again.`,
   }
 }

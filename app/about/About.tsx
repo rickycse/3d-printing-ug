@@ -23,6 +23,9 @@ export const TOPICS = {
   MODELING: "MODELING",
   PRINTING: "PRINTING",
   PROBLEMS: "PROBLEMS",
+  LINGERING_FUMES: "LINGERING_FUMES",
+  SCIENCE_WIP: "SCIENCE_WIP",
+  FOOD_SAFETY: "FOOD_SAFETY",
 } as const
 
 export type Topic = (typeof TOPICS)[keyof typeof TOPICS]
@@ -88,6 +91,8 @@ export default function About() {
           <button onClick={() => setAll(true)}>Expand All</button>
           <button onClick={() => setAll(false)}>Collapse All</button>
         </div>
+
+        <div className="text-2xl">Optional Read</div>
         <Section topic={TOPICS.YAPPING} title="My Yapping Session" color="blue">
           <div className="whitespace-pre-line">{CONSTANTS.YAPPING}</div>
         </Section>
@@ -180,9 +185,26 @@ export default function About() {
           <Section topic={TOPICS.PROBLEMS} title="WIP" color="red">
             {CONSTANTS.PROBLEMS.WIP}
           </Section>
+          <Section topic={TOPICS.LINGERING_FUMES} title="Lingering Fumes" color="red">
+            {CONSTANTS.PROBLEMS.LINGERING_FUMES}
+          </Section>
         </div>
-      </div>
 
+        <div className="text-2xl">Concerns</div>
+        <div className="flex flex-col w-full gap-4">
+          <Section topic={TOPICS.FOOD_SAFETY} title="Food Safety" color="yellow">
+            {CONSTANTS.CONCERNS.FOOD_SAFETY}
+          </Section>
+        </div>
+
+        <div className="text-2xl">Le Science</div>
+        <div className="flex flex-col w-full gap-4">
+          <Section topic={TOPICS.SCIENCE_WIP} title="WIP" color="green">
+            {CONSTANTS.SCIENCE.WIP}
+          </Section>
+        </div>
+
+      </div>
       <Footer />
     </div>
   )
