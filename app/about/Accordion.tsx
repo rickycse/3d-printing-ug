@@ -1,12 +1,11 @@
-import React from "react"
+import React, { memo, useCallback, useState } from "react"
 import clsx from "clsx"
 
 type AccordionProps = {
-  title: string
-  children: React.ReactNode
-  open: boolean
-  setOpen: (open: boolean) => void
-  color?: string
+  title: string;
+  expandAll: boolean;
+  color?: string;
+  children: React.ReactNode;
 }
 
 const colorStyles: Record<string, string> = {
@@ -15,16 +14,20 @@ const colorStyles: Record<string, string> = {
   red: "border-red-200 bg-red-50 dark:border-red-700 dark:bg-red-800",
   gray: "border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800",
   slate: "border-slate-200 bg-slate-50 dark:border-slate-600 dark:bg-slate-700",
-  yellow: "border-yellow-200 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-700",
+  yellow:
+    "border-yellow-200 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-700",
 }
 
-export default function Accordion({
+export const Accordion = memo(function Accordion({
   title,
   children,
-  open,
-  setOpen,
+  expandAll,
   color = "gray",
 }: AccordionProps) {
+  const [open, setOpen] = useState(expandAll);
+
+  const onToggle = useCallback(() => setOpen(!open), [open, setOpen])
+
   return (
     <div className="space-y-4">
       <details
@@ -38,7 +41,7 @@ export default function Accordion({
           className="flex items-center justify-between gap-1.5 text-gray-900 dark:text-white cursor-pointer"
           onClick={(e) => {
             e.preventDefault()
-            setOpen(!open)
+            onToggle()
           }}
         >
           <h2 className="text-lg font-medium">{title}</h2>
@@ -62,4 +65,6 @@ export default function Accordion({
       </details>
     </div>
   )
-}
+})
+
+export default Accordion
