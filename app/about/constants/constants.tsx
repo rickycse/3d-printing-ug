@@ -71,12 +71,14 @@ export const CONSTANTS = {
     
     You can also either add a passive intake fan on the opposite side of your enclosure or slow down your exhaust fan speed to fix this (assuming your fan came with a controller). The general idea here is that if air is being pushed out, then you also need fresh air to be pushed in to replace it.`
   },
+  
+  CONCERNS: {
+    FOOD_SAFETY: `As far as I know, 3D-printed objects aren't food-safe. The filament you print with (usually PLA) can be graded as food-safe, but the layer lines from printing will say otherwise. Those lines and small gaps can trap bacteria and make the object difficult to clean. So while you could drink from a 3D-printed cup once, you wouldn't really be able to clean it well enough for repeated use.
+
+    If anyone has actually found a way to properly clean their 3D prints, please let me know too.`,
+  },
 
   SCIENCE: {
     WIP: `I wanted to add a section to talk about the science behind 3d printing and some of the health concerns if you aren't careful. I haven't done enough research yet, but once I do, I plan on returning this section. If you'd like to contribute, feel free to let me know!`
   },
-
-  CONCERNS: {
-    FOOD_SAFETY: `As far as I know, 3D printed objects are not truly food-safe. The filament you print with (usually PLA) can be graded food-safe, but the layer lines from printing will say otherwise. These tiny layer lines and gaps can trap bacteria and make it difficult to clean, so while you could drink from your 3D printed cup, you wouldn't be to really clean it and drink from it again and again.`,
-  }
 }
