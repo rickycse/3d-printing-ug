@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from "react"
+import React, { memo, useState } from "react"
 import Accordion from "./Accordion"
 import { CONSTANTS } from "./constants/constants"
 import Home from "./Home"
@@ -40,17 +40,8 @@ const makeAll = (value: boolean): Record<Topic, boolean> =>
   )
 
 const VideoComponent = memo(function VideoComponent({ src }: { src: string }) {
-  const ref = useRef<HTMLIFrameElement | null>(null)
-
-  useEffect(() => {
-    if (ref.current && ref.current.src !== src) {
-      ref.current.src = src
-    }
-  }, [src])
-
   return (
     <iframe
-      ref={ref}
       className="w-[90%] md:w-[70%] lg:w-[50%] min-h-[200px] md:min-h-[300px] 2xl:min-h-[400px]"
       src={src}
     />
