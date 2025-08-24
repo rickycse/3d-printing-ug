@@ -88,6 +88,10 @@ const mySetup = [
     name: "YOOPAI Enclosure",
     link: "https://www.amazon.ca/Enclosures-Fireproof-Temperature-Protective-Printer%EF%BC%8825-6/dp/B0BMLD17QF/ref=sr_1_9?s=industrial&sr=1-9",
   },
+  {
+    name: "Website Icon",
+    link: "https://www.flaticon.com/free-icons/3d-printer",
+  }
 ]
 
 export default function Footer() {
