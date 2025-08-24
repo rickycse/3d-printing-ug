@@ -113,14 +113,15 @@ export default function About() {
         <div className="text-2xl">Optional Read</div>
         <Section topic={TOPICS.YAPPING} title="My Yapping Session" color="blue">
           <div className="pt-4 flex flex-col gap-4 whitespace-pre-line">
+            <div>{CONSTANTS.YAPPING}</div>
             <div>
-              {CONSTANTS.YAPPING}
-            </div>
-            <div>
-              If you somehow haven't seen any of Scott Yu-Jan's videos, here's the one that got me into printing:
+              If you somehow haven't seen any of Scott Yu-Jan's videos, here's
+              the one that got me into printing:
             </div>
             <div className="flex flex-col gap-4 justify-center items-center">
-              <VideoComponent src={"https://www.youtube.com/embed/9FHjfzS4BqQ"} />
+              <VideoComponent
+                src={"https://www.youtube.com/embed/9FHjfzS4BqQ"}
+              />
             </div>
           </div>
         </Section>
@@ -138,7 +139,20 @@ export default function About() {
                 title="Types of Filament"
                 color="slate"
               >
-                {CONSTANTS.FILAMENTS.TYPES}
+                <div className="pt-4 flex flex-col gap-4">
+                  <div>{CONSTANTS.FILAMENTS.TYPES}</div>
+                  <div>
+                    I would also recommend watching Zack Freedman's video if you
+                    want to learn about all of the different filaments:
+                  </div>
+                  <div className="flex flex-col gap-4 justify-center items-center">
+                    <VideoComponent
+                      src={
+                        "https://www.youtube.com/embed/weeG9yOp3i4"
+                      }
+                    />
+                  </div>
+                </div>
               </Section>
               <Section
                 topic={TOPICS.DRYING}
@@ -179,7 +193,9 @@ export default function About() {
                 title="Filtration"
                 color="slate"
               >
-                {CONSTANTS.SAFETY.FILTRATION}
+                <div className="pt-4 flex flex-col gap-4">
+                  <div>{CONSTANTS.SAFETY.FILTRATION}</div>
+                </div>
               </Section>
 
               <div className="pt-2">{CONSTANTS.SAFETY.DESCRIPTION}</div>
