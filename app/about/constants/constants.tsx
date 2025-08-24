@@ -55,12 +55,16 @@ export const CONSTANTS = {
 
     ENCLOSURE: `Some printers like the Bambu X1C and P1S already come with enclosures, but if you're buying a Creality Ender 3 Pro or Bambu A1 series printer, then you might want to buy one. Enclosures keep dust off your printers, maintain stable ambient temperatures to prevent wraping, and protects your house from any potential fires (extremely rare). Since the A1 Mini has its own onboard fan ( not to be confused with the A1! ), I chose to enclose my printer with an exhaust fan blowing out my window.
     
-    Depending on your printer, having an enclosure might fry your motherboard if it doesn't have its own onboard fan, in which case, there are a ton of easy mods to fix this. I don't have an A1, so I can't comment on how to fix this. Make sure you do your own research and find out what's best for your setup.`,
+    Depending on your printer, having an enclosure might fry your motherboard if it doesn't have its own onboard fan, in which case, there are a ton of easy mods to fix this. I don't have an A1, so I can't comment on how to fix this, but I would recommend checking out Billt's video on this: https://www.youtube.com/watch?v=QkvE0x5SQVo
+    
+    Make sure you do your own research and find out what's best for your setup.`,
 
     FANS: `Depending on how you're going to vent or filter out the nasties from your 3D printer, you're either going to need a meth-lab level exhaust fan or simple computer one. If you have a short duct venting outside or a thin filter, then you can use a simple computer fan like the Noctua A8 or IPPC-3000 for your enclosure. But if you're using more heavy-duty filaments like ABS and Nylon, or resin printing, then you should go all out and get an inline-duct exhaust fan. Make sure to consider the fan speeds and pressure when you're buying a fan for your enclosure and filters. You can't just slap a random fan onto a random filter—make sure they actually match up.  
     
     - Higher fan speed = less time needed to vent or filter
-    - Higher fan pressure = more force to push the air through filters`,
+    - Higher fan pressure = more force to push the air through filters
+    
+    Maker Mike has some great videos for this that I would highly recommend watching: https://www.youtube.com/watch?v=dnUz8IxtlMo`,
   },
   FINALE: `You've got your printer, got your filaments, and setup your enclosure. You're finally ready to get into the fun part, printing (and maybe modeling)! Honestly, I don't have much of an opinion or guide here, use whatever software works for you! Personally, I've been using Fusion360 to model everything, but I've heard that onShape is a good alternative as well.`,
 
