@@ -11,10 +11,6 @@ export default function Home() {
             <strong className="text-indigo-600"> 3D Printing </strong>& Safety
           </h1>
 
-          <p className="mt-4 text-base text-pretty text-gray-700 sm:text-lg/relaxed dark:text-gray-200">
-            {CONSTANTS.HOME.DESCRIPTION}
-          </p>
-
           <p className="mt-4 italic text-xs text-red-600">
             {CONSTANTS.DISCLAIMER}
           </p>

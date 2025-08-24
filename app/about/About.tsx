@@ -115,7 +115,7 @@ export default function About() {
           <div className="pt-4 flex flex-col gap-4 whitespace-pre-line">
             <div>{CONSTANTS.YAPPING}</div>
             <div>
-              If you somehow haven't seen any of Scott Yu-Jan's videos, here's
+              And if you somehow haven't seen any of Scott Yu-Jan's videos, here's
               the one that got me into printing:
             </div>
             <div className="flex flex-col gap-4 justify-center items-center">

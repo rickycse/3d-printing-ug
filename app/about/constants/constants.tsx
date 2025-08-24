@@ -5,11 +5,11 @@ export const CONSTANTS = {
 
   YAPPING: `I'm just going to yap a bit about how I got into 3D printing, what I've enjoyed so far, and what I plan to do next.
 
-  I think what really pulled me into the hobby was my habit of looking at things and thinking: I could probably fix that. I wonder if I could make this better. How cool would it be if I could make that? But if you had asked me a few years ago what I knew about 3D printers, then all I could tell you was that it looked cool and that Creality had some crazy printers. Although I've just recently picked up this hobby, I've been loving every bit of it. There's always so much to learn, but I guess that's to be expected when you pick up two hobbies at once (3D printing and modeling). There's something about being able to create, recreate, or just admire other models/prints that really makes you appreciate all the thought and effort that go into them.
+  I think what really pulled me into the hobby was my habit of looking at things and thinking: I could probably fix that. I wonder if I could make this better. How cool would it be if I could make that? But if you had asked me a few years ago what I knew about 3D printers, then all I could tell you was that it looked cool and that Creality had some crazy machines. Fast-forward to now, I've finally jumped into the hobby—and honestly, I've been loving every bit of it. There's always so much to learn, but I guess that's to be expected when you pick up two different hobbies at once (3D printing and modeling).
 
-  What really pushed me to finally get a printer, though, were videos from Scott Yu-Jan and Billt. The idea of innovating at that level—solving problems you didn't even know existed and then turning those solutions into a business—really lit a fire in me. At this point, I honestly think every household should have a printer, lol.
+  For me, it's the magic of being able to imagine something, bring it to life, and have it in the palm of your hand in the next hour. And it's not just about what I can make- it's also been so inspiring to see all of the incredible designs all over the internet. 
 
-  I don't have an exact timeline for what I want to do next, but my plan is to get better at 3D modeling, post some of my own designs, and eventually upgrade my printer. Seeing all the new models and sales makes it REALLY hard to resist upgrading right away, but hopefully I can hold out for another year, haha. That's all for my yap session—enjoy the rest of this (unofficial) guide!`,
+  I don't have an exact timeline for what I want to do next, but my plan is to get better at 3D modeling, post some of my own designs, and eventually upgrade my printer. I also want to participate in a contest, but that's for much later. That's all for my yap session—enjoy the rest of this (unofficial) guide!`,
 
   PRINTERS: `There are two main types of 3D printers you can choose from:
 
