@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { memo, useEffect, useRef, useState } from "react"
 import Accordion from "./Accordion"
 import { CONSTANTS } from "./constants/constants"
 import Home from "./Home"
@@ -39,6 +39,24 @@ const makeAll = (value: boolean): Record<Topic, boolean> =>
     {} as Record<Topic, boolean>
   )
 
+const VideoComponent = memo(function VideoComponent({ src }: { src: string }) {
+  const ref = useRef<HTMLIFrameElement | null>(null)
+
+  useEffect(() => {
+    if (ref.current && ref.current.src !== src) {
+      ref.current.src = src
+    }
+  }, [src])
+
+  return (
+    <iframe
+      ref={ref}
+      className="w-[90%] md:w-[70%] lg:w-[50%] min-h-[200px] md:min-h-[300px] 2xl:min-h-[400px]"
+      src={src}
+    />
+  )
+})
+
 export default function About() {
   const [openById, setOpenById] = useState<Record<Topic, boolean>>(() =>
     makeAll(false)
@@ -76,7 +94,7 @@ export default function About() {
         open={openById[topic]}
         setOpen={() => toggle(topic)}
       >
-        <div className="pt-2">{children}</div>
+        <div className="py-2">{children}</div>
       </Accordion>
     )
   }
@@ -165,10 +183,23 @@ export default function About() {
                 title="Fan Speeds and Pressure"
                 color="slate"
               >
-                {CONSTANTS.SAFETY.FANS}
+                <div className="pt-4 flex flex-col gap-4">
+                  {CONSTANTS.SAFETY.FANS}
+                  <div className="flex flex-col gap-4 justify-center items-center">
+                    <VideoComponent
+                      src={"https://www.youtube.com/embed/dnUz8IxtlMo"}
+                    />
+                  </div>
+                </div>
               </Section>
-
-              <div className="pt-2">{CONSTANTS.SAFETY.ENCLOSURE}</div>
+              {CONSTANTS.SAFETY.ENCLOSURE}
+              <div className="flex flex-col gap-4 justify-center items-center">
+                <VideoComponent
+                  src={"https://www.youtube.com/embed/QkvE0x5SQVo"}
+                />
+              </div>
+              Make sure you do your own research and find out what's best for
+              your setup.
             </div>
           </Section>
         </div>
@@ -185,14 +216,22 @@ export default function About() {
           <Section topic={TOPICS.PROBLEMS} title="WIP" color="red">
             {CONSTANTS.PROBLEMS.WIP}
           </Section>
-          <Section topic={TOPICS.LINGERING_FUMES} title="Lingering Fumes" color="red">
+          <Section
+            topic={TOPICS.LINGERING_FUMES}
+            title="Lingering Fumes"
+            color="red"
+          >
             {CONSTANTS.PROBLEMS.LINGERING_FUMES}
           </Section>
         </div>
 
         <div className="text-2xl">Concerns</div>
         <div className="flex flex-col w-full gap-4">
-          <Section topic={TOPICS.FOOD_SAFETY} title="Food Safety" color="yellow">
+          <Section
+            topic={TOPICS.FOOD_SAFETY}
+            title="Food Safety"
+            color="yellow"
+          >
             {CONSTANTS.CONCERNS.FOOD_SAFETY}
           </Section>
         </div>
@@ -203,7 +242,6 @@ export default function About() {
             {CONSTANTS.SCIENCE.WIP}
           </Section>
         </div> */}
-
       </div>
       <Footer />
     </div>
