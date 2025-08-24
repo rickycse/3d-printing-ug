@@ -9,13 +9,13 @@ type AccordionProps = {
 }
 
 const colorStyles: Record<string, string> = {
-  blue: "border-blue-200 bg-blue-50 dark:border-blue-700 dark:bg-blue-900",
-  green: "border-green-200 bg-green-50 dark:border-green-700 dark:bg-green-800",
-  red: "border-red-200 bg-red-50 dark:border-red-700 dark:bg-red-800",
-  gray: "border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-800",
-  slate: "border-slate-200 bg-slate-50 dark:border-slate-600 dark:bg-slate-700",
+  blue: "border-blue-700 bg-blue-900",
+  green: "border-green-700 bg-green-800",
+  red: "border-red-700 bg-red-800",
+  gray: "border-gray-700 bg-gray-800",
+  slate: "border-slate-600 bg-slate-700",
   yellow:
-    "border-yellow-200 bg-yellow-50 dark:border-yellow-600 dark:bg-yellow-700",
+    "border-yellow-600 bg-yellow-700",
 }
 
 export const Accordion = memo(function Accordion({
@@ -38,7 +38,7 @@ export const Accordion = memo(function Accordion({
         )}
       >
         <summary
-          className="flex items-center justify-between gap-1.5 text-gray-900 dark:text-white cursor-pointer"
+          className="flex items-center justify-between gap-1.5 text-white cursor-pointer"
           onClick={(e) => {
             e.preventDefault()
             onToggle()

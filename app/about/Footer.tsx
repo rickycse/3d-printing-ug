@@ -10,14 +10,14 @@ type SourcesProps = {
 function Sources({ title, links }: SourcesProps) {
   return (
     <div>
-      <p className="font-medium text-gray-900 dark:text-white">{title}</p>
+      <p className="font-medium text-white">{title}</p>
 
       <ul className="mt-6 space-y-4 text-sm">
         {links.map((item) => (
           <li key={item.link}>
             <a
               href={item.link}
-              className="text-gray-700 transition hover:opacity-75 dark:text-gray-200"
+              className="transition hover:opacity-75 text-gray-200"
               target="_blank"
               rel="noreferrer"
             >
@@ -96,7 +96,7 @@ const mySetup = [
 
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-gray-900">
+    <footer className="bg-gray-900">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="lg:grid lg:grid-cols-2">
           <div className="border-b border-gray-100 py-8 lg:order-last lg:border-s lg:border-b-0 lg:py-16 lg:ps-16 dark:border-gray-800">
@@ -105,13 +105,13 @@ export default function Footer() {
 
               <div>
                 <h2
-                  className="text-2xl font-medium text-gray-900 dark:text-white"
+                  className="text-2xl font-medium text-white"
                   id="contact"
                 >
                   Contact Me
                 </h2>
 
-                <p className="mt-4 max-w-lg text-gray-500 dark:text-gray-400">
+                <p className="mt-4 max-w-lg text-gray-400">
                   If I'm mistaken somewhere or you'd like to contribute to the
                   website, feel free to send a note to me so I'll add and credit
                   you here!
@@ -120,14 +120,14 @@ export default function Footer() {
 
               <div>
                 <label htmlFor="Notes">
-                  <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
+                  <span className="text-sm font-medium text-gray-200">
                     {" "}
                     Notes{" "}
                   </span>
 
                   <textarea
                     id="Notes"
-                    className="mt-0.5 w-full resize-none text-white rounded border-1 border-white shadow-sm sm:text-sm  dark:text-white p-1"
+                    className="mt-0.5 w-full resize-none rounded border-1 border-white shadow-sm sm:text-sm  text-white p-1"
                     rows={4}
                     defaultValue={"This feature is still a W.I.P."}
                   ></textarea>
@@ -136,14 +136,14 @@ export default function Footer() {
                 <div className="mt-1.5 flex items-center justify-end gap-2">
                   <button
                     type="button"
-                    className="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700"
+                    className="rounded border px-3 py-1.5 text-sm font-medium shadow-sm transition-colors border-gray-600 text-white hover:bg-gray-700"
                   >
                     Clear
                   </button>
 
                   <button
                     type="button"
-                    className="rounded border border-gray-300 px-3 py-1.5 text-sm font-medium text-gray-900 shadow-sm transition-colors hover:bg-gray-100 dark:border-gray-600 dark:text-white dark:hover:bg-gray-700"
+                    className="rounded border px-3 py-1.5 text-sm font-medium shadow-sm transition-colors border-gray-600 text-white hover:bg-gray-700"
                   >
                     Send
                   </button>
