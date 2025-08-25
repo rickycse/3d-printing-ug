@@ -1,9 +1,9 @@
-import React, { memo, useCallback, useEffect, useState } from "react"
+import React, { memo, useState } from "react"
 import Accordion from "./Accordion"
 import { CONSTANTS } from "./constants/constants"
-import Home from "./Home"
 import Footer from "./Footer"
 import Divider from "./Divider"
+import Landing from "./Landing"
 
 const VideoComponent = memo(function VideoComponent({ src }: { src: string }) {
   return (
@@ -44,7 +44,7 @@ export default function About() {
 
   return (
     <div className="w-[100%] flex flex-col justify-center bg-gray-900 text-white">
-      <Home />
+      <Landing />
       <Divider />
 
       <div className="flex flex-col gap-4 w-[90%] mx-auto my-4 whitespace-pre-line md:w-[80%] lg:w-[70%]">

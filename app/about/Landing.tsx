@@ -1,7 +1,7 @@
 import React from "react"
 import { CONSTANTS } from "./constants/constants"
 
-export default function Home() {
+export default function Landing() {
   return (
     <section className="lg:grid lg:h-screen lg:place-content-center bg-gray-900">
       <div className="mx-auto w-screen max-w-screen-xl px-4 py-24 sm:px-6 sm:py-24 flex flex-col gap-4 lg:grid lg:grid-cols-[2fr_3fr] lg:items-center lg:px-8 lg:py-32">

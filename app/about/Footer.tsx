@@ -1,11 +1,11 @@
 import React from "react"
 
-type LinkItem = { name: string; link: string };
+type LinkItem = { name: string; link: string }
 
 type SourcesProps = {
-  title: string;
-  links: LinkItem[];
-};
+  title: string
+  links: LinkItem[]
+}
 
 function Sources({ title, links }: SourcesProps) {
   return (
@@ -27,7 +27,7 @@ function Sources({ title, links }: SourcesProps) {
         ))}
       </ul>
     </div>
-  );
+  )
 }
 
 const helpfulChannels = [
@@ -42,7 +42,7 @@ const helpfulChannels = [
   {
     name: "Scott Yu-Jang",
     link: "https://www.youtube.com/@ScottYuJan",
-  }
+  },
 ]
 
 const enclosures = [
@@ -57,7 +57,7 @@ const enclosures = [
   {
     name: "A1 Enclosure",
     link: "https://www.amazon.ca/sspa/click?ie=UTF8&spc=MToyNzgyNTY2MTAyMjUxNDk4OjE3NTU4MTY4NDk6c3Bfc2VhcmNoX3RoZW1hdGljOjMwMDc4Njk0NTI4NzcwMjo6NDo6&url=%2FEnclosure-Stainless-Fireproof-Dustproof-Temperature%2Fdp%2FB0DRY5VCHZ%2Fref%3Dsxin_15_pa_sp_search_thematic_sspa%3Fcontent-id%3Damzn1.sym.a0ad33d0-ba28-48c7-9aa0-231fb1fad82a%253Aamzn1.sym.a0ad33d0-ba28-48c7-9aa0-231fb1fad82a%26crid%3D3HTH9JW6J9MHO%26cv_ct_cx%3D3d%2Benclosure%26keywords%3D3d%2Benclosure%26pd_rd_i%3DB0DRY5VCHZ%26pd_rd_r%3D2a2425b2-a6c2-4085-b556-79288798514a%26pd_rd_w%3D6WBwm%26pd_rd_wg%3DZW3HI%26pf_rd_p%3Da0ad33d0-ba28-48c7-9aa0-231fb1fad82a%26pf_rd_r%3D5Y20XBGZ783N1H6JMMFY%26qid%3D1755816849%26sbo%3DRZvfv%252F%252FHxDF%252BO5021pAnSA%253D%253D%26sprefix%3D3d%2Benclosur%252Caps%252C107%26sr%3D1-5-30a71431-0640-4d25-b8df-74e773a218a5-spons%26sp_csd%3Dd2lkZ2V0TmFtZT1zcF9zZWFyY2hfdGhlbWF0aWM%26psc%3D1",
-  }
+  },
 ]
 
 const printers = [
@@ -67,12 +67,12 @@ const printers = [
   },
   {
     name: "Creality",
-    link: "https://www.creality.com/products/creality-hi-combo?gad_campaignid=22669193684"
+    link: "https://www.creality.com/products/creality-hi-combo?gad_campaignid=22669193684",
   },
   {
     name: "Prusa Research",
-    link: "https://www.prusa3d.com/?gad_campaignid=804628075"
-  }
+    link: "https://www.prusa3d.com/?gad_campaignid=804628075",
+  },
 ]
 
 const mySetup = [
@@ -91,7 +91,7 @@ const mySetup = [
   {
     name: "Website Icon",
     link: "https://www.flaticon.com/free-icons/3d-printer",
-  }
+  },
 ]
 
 export default function Footer() {
@@ -104,10 +104,7 @@ export default function Footer() {
               <span className="hidden h-1 w-10 rounded-sm bg-blue-500 lg:block"></span>
 
               <div>
-                <h2
-                  className="text-2xl font-medium text-white"
-                  id="contact"
-                >
+                <h2 className="text-2xl font-medium text-white" id="contact">
                   Contact Me
                 </h2>
 
@@ -116,6 +113,14 @@ export default function Footer() {
                   website, feel free to send a note to me so I'll add and credit
                   you here!
                 </p>
+                <br />
+                <a
+                  className="pt-4 underline"
+                  href="https://www.reddit.com/r/3Dprinting/comments/1mz3mnv/i_made_a_short_guide_into_3d_printing/"
+                >
+                  This feature is still a W.I.P, but feel free to comment on my
+                  reddit post!
+                </a>
               </div>
 
               <div>
@@ -127,9 +132,9 @@ export default function Footer() {
 
                   <textarea
                     id="Notes"
-                    className="mt-0.5 w-full resize-none rounded border-1 border-white shadow-sm sm:text-sm  text-white p-1"
+                    className="mt-0.5 w-full resize-none rounded border-1 border-white shadow-sm sm:text-sm  text-white p-1 whitespace-pre-line"
                     rows={4}
-                    defaultValue={"This feature is still a W.I.P."}
+                    defaultValue={`This feature is still a W.I.P.`}
                   ></textarea>
                 </label>
 
@@ -161,7 +166,6 @@ export default function Footer() {
               <Sources title="Printers" links={printers} />
 
               <Sources title="My Setup" links={mySetup} />
-
             </div>
           </div>
         </div>
