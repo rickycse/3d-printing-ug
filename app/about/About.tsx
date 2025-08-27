@@ -20,7 +20,7 @@ const VideoComponent = memo(function VideoComponent({ src }: { src: string }) {
 })
 
 export default function About() {
-  const [expandAll, setExpandAll] = useState(false);
+  const [expandAll, setExpandAll] = useState(false)
 
   const Section = memo(function Section({
     title,
@@ -30,7 +30,7 @@ export default function About() {
   }: {
     title: string
     color?: string
-    expandAll: boolean;
+    expandAll: boolean
     children: React.ReactNode
   }) {
     return (
@@ -39,8 +39,6 @@ export default function About() {
       </Accordion>
     )
   })
-
-
 
   return (
     <div className="w-[100%] flex flex-col justify-center bg-gray-900 text-white">
@@ -73,11 +71,17 @@ export default function About() {
 
         <div className="text-2xl">The Basics</div>
         <div className="flex flex-col w-full gap-4">
-          <Section expandAll={expandAll} title="Choosing Your Printer">{CONSTANTS.PRINTERS}</Section>
+          <Section expandAll={expandAll} title="Choosing Your Printer">
+            {CONSTANTS.PRINTERS}
+          </Section>
 
           <Section expandAll={expandAll} title="Filaments">
             <div className="pt-4 flex flex-col gap-4">
-              <Section expandAll={expandAll} title="Types of Filament" color="slate">
+              <Section
+                expandAll={expandAll}
+                title="Types of Filament"
+                color="slate"
+              >
                 <div className="pt-4 flex flex-col gap-4">
                   <div>{CONSTANTS.FILAMENTS.TYPES}</div>
                   <div>
@@ -93,10 +97,18 @@ export default function About() {
                   </div>
                 </div>
               </Section>
-              <Section expandAll={expandAll} title="Drying Your Filament" color="slate">
+              <Section
+                expandAll={expandAll}
+                title="Drying Your Filament"
+                color="slate"
+              >
                 {CONSTANTS.FILAMENTS.DRYING}
               </Section>
-              <Section expandAll={expandAll} title="Multicolor Printing" color="slate">
+              <Section
+                expandAll={expandAll}
+                title="Multicolor Printing"
+                color="slate"
+              >
                 {CONSTANTS.FILAMENTS.MULTICOLOR}
               </Section>
 
@@ -110,7 +122,26 @@ export default function About() {
           <Section expandAll={expandAll} title="Ventilation vs. Filtration">
             <div className="pt-4 flex flex-col gap-4">
               <Section expandAll={expandAll} title="Ventilation" color="slate">
-                {CONSTANTS.SAFETY.VENTILATION}
+                <div className="pt-4 flex flex-col gap-4">
+                  <div>{CONSTANTS.SAFETY.VENTILATION}</div>
+                  <div>
+                    I HIGHLY recommend watching Aris Alder's video on
+                    ventilation below.{" "}
+                    <span className="text-red-500 font-semibold">
+                      If you have bad asthma or some sort of condition, I would
+                      say GO ALL OUT on ventilation and filtration,
+                      even if you're only printing with PLA. You only get one
+                      set of lungs.
+                    </span>
+                  </div>
+                  <div className="flex flex-col gap-4 justify-center items-center">
+                    <VideoComponent
+                      src={
+                        "https://www.youtube.com/embed/aRwxBNV3Ssc?si=AtHURzS9vZ5dVFxa"
+                      }
+                    />
+                  </div>
+                </div>
               </Section>
               <Section expandAll={expandAll} title="Filtration" color="slate">
                 <div className="pt-4 flex flex-col gap-4">
@@ -124,7 +155,11 @@ export default function About() {
 
           <Section expandAll={expandAll} title="Enclosures and Fans">
             <div className="pt-4 flex flex-col gap-4">
-              <Section expandAll={expandAll} title="Fan Speeds and Pressure" color="slate">
+              <Section
+                expandAll={expandAll}
+                title="Fan Speeds and Pressure"
+                color="slate"
+              >
                 <div className="pt-4 flex flex-col gap-4">
                   {CONSTANTS.SAFETY.FANS}
                   <div className="flex flex-col gap-4 justify-center items-center">
@@ -152,7 +187,9 @@ export default function About() {
 
         <div className="text-2xl">That's It!</div>
         <div className="flex flex-col w-full gap-4">
-          <Section expandAll={expandAll} title="Start Printing!">{CONSTANTS.FINALE}</Section>
+          <Section expandAll={expandAll} title="Start Printing!">
+            {CONSTANTS.FINALE}
+          </Section>
         </div>
 
         <div className="text-2xl">Common Problems & Fixes</div>
