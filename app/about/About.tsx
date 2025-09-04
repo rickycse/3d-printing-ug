@@ -1,44 +1,30 @@
 import React, { memo, useState } from "react"
-import Accordion from "./Accordion"
-import { CONSTANTS } from "./constants/constants"
+import Accordion from "./components/Accordion"
 import Footer from "./Footer"
-import Divider from "./Divider"
+import Divider from "./components/Divider"
 import Landing from "./Landing"
+import VideoComponent from "./components/VideoComponent"
 
-const VideoComponent = memo(function VideoComponent({ src }: { src: string }) {
+const Section = memo(function Section({
+  title,
+  color,
+  expandAll,
+  children,
+}: {
+  title: string
+  color?: string
+  expandAll: boolean
+  children: React.ReactNode
+}) {
   return (
-    <iframe
-      className="w-[90%] md:w-[70%] lg:w-[50%] min-h-[200px] md:min-h-[300px] 2xl:min-h-[400px]"
-      src={src}
-      title="YouTube video player"
-      frameBorder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      referrerPolicy="strict-origin-when-cross-origin"
-      allowFullScreen
-    />
+    <Accordion title={title} color={color} expandAll={expandAll}>
+      <div className="py-2">{children}</div>
+    </Accordion>
   )
 })
 
-export default function About() {
+export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> }) {
   const [expandAll, setExpandAll] = useState(false)
-
-  const Section = memo(function Section({
-    title,
-    color,
-    expandAll,
-    children,
-  }: {
-    title: string
-    color?: string
-    expandAll: boolean
-    children: React.ReactNode
-  }) {
-    return (
-      <Accordion title={title} color={color} expandAll={expandAll}>
-        <div className="py-2">{children}</div>
-      </Accordion>
-    )
-  })
 
   return (
     <div className="w-[100%] flex flex-col justify-center bg-gray-900 text-white">
