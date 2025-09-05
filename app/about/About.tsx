@@ -1,9 +1,9 @@
 import React, { memo, useState } from "react"
-import Accordion from "./components/Accordion"
+import Accordion from "~/components/Accordion"
 import Footer from "./Footer"
-import Divider from "./components/Divider"
+import Divider from "~/components/Divider"
 import Landing from "./Landing"
-import VideoComponent from "./components/VideoComponent"
+import VideoComponent from "~/components/VideoComponent"
 
 const Section = memo(function Section({
   title,
@@ -40,7 +40,7 @@ export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> })
         <div className="text-2xl">Optional Read</div>
         <Section expandAll={expandAll} title="My Yapping Session" color="blue">
           <div className="pt-4 flex flex-col gap-4 whitespace-pre-line">
-            <div>{CONSTANTS.YAPPING}</div>
+            <div>{CONSTANTS.STATIC.YAPPING}</div>
             <div>
               And if you somehow haven't seen any of Scott Yu-Jan's videos,
               here's the one that got me into printing:
@@ -58,7 +58,7 @@ export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> })
         <div className="text-2xl">The Basics</div>
         <div className="flex flex-col w-full gap-4">
           <Section expandAll={expandAll} title="Choosing Your Printer">
-            {CONSTANTS.PRINTERS}
+            {CONSTANTS.STATIC.PRINTERS}
           </Section>
 
           <Section expandAll={expandAll} title="Filaments">
@@ -174,7 +174,7 @@ export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> })
         <div className="text-2xl">That's It!</div>
         <div className="flex flex-col w-full gap-4">
           <Section expandAll={expandAll} title="Start Printing!">
-            {CONSTANTS.FINALE}
+            {CONSTANTS.STATIC.FINALE}
           </Section>
         </div>
 

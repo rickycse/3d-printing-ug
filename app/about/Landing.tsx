@@ -1,5 +1,5 @@
 import React from "react"
-import { CONSTANTS } from "./constants/constants"
+import { CONSTANTS } from "~/constants/constants"
 
 export default function Landing() {
   return (
