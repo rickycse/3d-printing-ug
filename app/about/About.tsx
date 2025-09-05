@@ -41,10 +41,6 @@ export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> })
         <Section expandAll={expandAll} title="My Yapping Session" color="blue">
           <div className="pt-4 flex flex-col gap-4 whitespace-pre-line">
             <div>{CONSTANTS.STATIC.YAPPING}</div>
-            <div>
-              And if you somehow haven't seen any of Scott Yu-Jan's videos,
-              here's the one that got me into printing:
-            </div>
             <div className="flex flex-col gap-4 justify-center items-center">
               <VideoComponent
                 src={
@@ -70,10 +66,6 @@ export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> })
               >
                 <div className="pt-4 flex flex-col gap-4">
                   <div>{CONSTANTS.FILAMENTS.TYPES}</div>
-                  <div>
-                    I would also recommend watching Zack Freedman's video if you
-                    want to learn about all of the different filaments:
-                  </div>
                   <div className="flex flex-col gap-4 justify-center items-center">
                     <VideoComponent
                       src={

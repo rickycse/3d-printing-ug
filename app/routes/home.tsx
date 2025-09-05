@@ -30,7 +30,7 @@ const DEFAULTS: GuideResponseType = {
     DESCRIPTION: FAILURE_MSG,
   },
   SAFETY: {
-    VENTIALTION: FAILURE_MSG,
+    VENTILATION: FAILURE_MSG,
     FILTRATION: FAILURE_MSG,
     DESCRIPTION: FAILURE_MSG,
     ENCLOSURE: FAILURE_MSG,
@@ -82,6 +82,7 @@ export async function loader({ request }: LoaderFunctionArgs) {
     ...concerns,
   }
 
+  console.log(content)
   return content
 }
 

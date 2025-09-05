@@ -15,7 +15,7 @@ interface GuideResponseType {
   }
 
   SAFETY: {
-    VENTIALTION: string;
+    VENTILATION: string;
     FILTRATION: string;
     DESCRIPTION: string;
     ENCLOSURE: string;
