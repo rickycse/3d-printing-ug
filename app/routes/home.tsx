@@ -42,7 +42,7 @@ const DEFAULTS: GuideResponseType = {
 
 async function get_topic(topic: string) {
   const url = process.env.CONTENT_SERVER || ""
-  const endpoint = `${url}/content/${topic}`
+  const endpoint = `${url}/printing-ug/${topic}`
 
   try {
     const response = await fetch(endpoint, {
