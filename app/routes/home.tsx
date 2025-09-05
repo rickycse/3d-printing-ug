@@ -82,7 +82,6 @@ export async function loader({ request }: LoaderFunctionArgs) {
     ...concerns,
   }
 
-  console.log(content)
   return content
 }
 
