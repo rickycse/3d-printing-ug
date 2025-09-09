@@ -25,6 +25,7 @@ interface GuideResponseType {
   PROBLEMS: {
     WIP: string;
     LINGERING_FUMES: string;
+    A1_MINI_GHZ: string;
   }
 
   CONCERNS: {

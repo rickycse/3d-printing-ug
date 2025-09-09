@@ -176,6 +176,9 @@ export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> })
           <Section expandAll={expandAll} title="Lingering Fumes" color="red">
             {CONSTANTS.PROBLEMS.LINGERING_FUMES}
           </Section>
+          <Section expandAll={expandAll} title="A1 Mini WiFi Connection Failure" color="red">
+            {CONSTANTS.PROBLEMS.A1_MINI_GHZ}
+          </Section>
         </div>
 
         <div className="text-2xl">Concerns</div>
