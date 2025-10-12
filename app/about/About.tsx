@@ -1,30 +1,74 @@
-import React, { memo, useState } from "react"
-import Accordion from "~/components/Accordion"
-import Footer from "./Footer"
-import Divider from "~/components/Divider"
-import Landing from "./Landing"
-import VideoComponent from "~/components/VideoComponent"
+import React, { memo, useCallback, useEffect, useState } from "react";
+import Accordion from "~/components/Accordion";
+import Footer from "./Footer";
+import Divider from "~/components/Divider";
+import Landing from "./Landing";
+import VideoComponent from "~/components/VideoComponent";
+
+type OpenMap = Record<string, boolean>;
+
+function useOpenRegistry() {
+  const [openMap, setOpenMap] = useState<OpenMap>({});
+  const register = useCallback((id: string, initial: boolean) => {
+    setOpenMap((m) => (id in m ? m : { ...m, [id]: initial }));
+  }, []);
+
+  const setAll = useCallback((val: boolean) => {
+    setOpenMap((m) =>
+      Object.fromEntries(Object.keys(m).map((k) => [k, val]))
+    );
+  }, []);
+
+  const setOne = useCallback((id: string, val: boolean) => {
+    setOpenMap((m) => ({ ...m, [id]: val }));
+  }, []);
+
+  return { openMap, register, setAll, setOne };
+}
 
 const Section = memo(function Section({
+  id,
   title,
   color,
-  expandAll,
   children,
+  // wiring from parent
+  openMap,
+  register,
+  setOne,
+
+  globalDefault,
 }: {
-  title: string
-  color?: string
-  expandAll: boolean
-  children: React.ReactNode
+  id: string;
+  title: string;
+  color?: string;
+  children: React.ReactNode;
+  openMap: OpenMap;
+  register: (id: string, initial: boolean) => void;
+  setOne: (id: string, val: boolean) => void;
+  globalDefault: boolean;
 }) {
+  useEffect(() => {
+    register(id, globalDefault);
+  }, [id, globalDefault, register]);
+
+  const open = !!openMap[id];
+
   return (
-    <Accordion title={title} color={color} expandAll={expandAll}>
+    <Accordion
+      title={title}
+      color={color}
+      open={open}
+      onOpenChange={(o) => setOne(id, o)}
+    >
       <div className="py-2">{children}</div>
     </Accordion>
-  )
-})
+  );
+});
 
 export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> }) {
-  const [expandAll, setExpandAll] = useState(false)
+  const [expandAll, setExpandAll] = useState(false);
+
+  const { openMap, register, setAll, setOne } = useOpenRegistry();
 
   return (
     <div className="w-[100%] flex flex-col justify-center bg-gray-900 text-white">
@@ -33,172 +77,238 @@ export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> })
 
       <div className="flex flex-col gap-4 w-[90%] mx-auto my-4 whitespace-pre-line md:w-[80%] lg:w-[70%]">
         <div className="flex justify-end gap-4 my-2">
-          <button onClick={() => setExpandAll(true)}>Expand All</button>
-          <button onClick={() => setExpandAll(false)}>Collapse All</button>
-        </div>
+          <button
+            onClick={() => {
+              setExpandAll(true);
+              setAll(true);
+            }}
+          >
+            Expand All
+          </button>
 
-        <div className="text-2xl">Optional Read</div>
-        <Section expandAll={expandAll} title="My Yapping Session" color="blue">
-          <div className="pt-4 flex flex-col gap-4 whitespace-pre-line">
-            <div>{CONSTANTS.STATIC.YAPPING}</div>
-            <div className="flex flex-col gap-4 justify-center items-center">
+          <button
+            onClick={() => {
+              setExpandAll(false);
+              setAll(false);
+            }}
+          >
+            Collapse All
+          </button>
+      </div>
+      
+      <div className="text-2xl">Optional Read</div>
+
+      <Section
+        id="yapping"
+        title="My Yapping Session"
+        color="blue"
+        openMap={openMap}
+        register={register}
+        setOne={setOne}
+        globalDefault={expandAll}
+      >
+        <div className="pt-4 flex flex-col gap-4 whitespace-pre-line">
+          <div>{CONSTANTS.STATIC.YAPPING}</div>
+          <div className="flex flex-col gap-4 justify-center items-center">
+            <VideoComponent src="https://www.youtube.com/embed/9FHjfzS4BqQ?si=Njy4q9bREv1cy0OS" />
+          </div>
+        </div>
+      </Section>
+      
+      <div className="text-2xl">The Basics</div>
+      <Section
+        id="printers"
+        title="Choosing Your Printer"
+        openMap={openMap}
+        register={register}
+        setOne={setOne}
+        globalDefault={expandAll}
+      >
+        {CONSTANTS.STATIC.PRINTERS}
+      </Section>
+    
+      <Section
+        id="filaments"
+        title="Filaments"
+        openMap={openMap}
+        register={register}
+        setOne={setOne}
+        globalDefault={expandAll}
+      >
+        <div className="flex flex-col w-full gap-2 my-2">
+          <Section
+            id="types"
+            title="Types of Filament"
+            color="slate"
+            openMap={openMap}
+            register={register}
+            setOne={setOne}
+            globalDefault={expandAll}
+          >
+            {CONSTANTS.FILAMENTS.TYPES}
+          </Section>
+          <Section
+            id="drying"
+            title="Drying Your Filament"
+            color="slate"
+            openMap={openMap}
+            register={register}
+            setOne={setOne}
+            globalDefault={expandAll}
+          >
+            {CONSTANTS.FILAMENTS.DRYING}
+          </Section>
+          <Section
+            id="multicolor"
+            title="Multicolor Printing"
+            color="slate"
+            openMap={openMap}
+            register={register}
+            setOne={setOne}
+            globalDefault={expandAll}
+          >
+            {CONSTANTS.FILAMENTS.MULTICOLOR}
+          </Section>
+        </div>
+        {CONSTANTS.FILAMENTS.DESCRIPTION}
+      </Section>
+      
+      <div className="text-2xl">Safety First</div>
+      <Section
+        id="safety"
+        title="Ventilation vs. Filtration"
+        openMap={openMap}
+        register={register}
+        setOne={setOne}
+        globalDefault={expandAll}
+      >
+        <div className="flex flex-col w-full gap-2 my-2">
+          <Section
+            id="ventilation"
+            title="Ventilation"
+            color="slate"
+            openMap={openMap}
+            register={register}
+            setOne={setOne}
+            globalDefault={expandAll}
+          >
+            {CONSTANTS.SAFETY.VENTILATION}
+            <div className="flex flex-col gap-4 justify-center items-center my-4">
               <VideoComponent
                 src={
-                  "https://www.youtube.com/embed/9FHjfzS4BqQ?si=Njy4q9bREv1cy0OS"
+                  "https://www.youtube.com/embed/aRwxBNV3Ssc"
                 }
               />
             </div>
+          </Section>
+          <Section
+            id="filtration"
+            title="Filtration"
+            color="slate"
+            openMap={openMap}
+            register={register}
+            setOne={setOne}
+            globalDefault={expandAll}
+          >
+            {CONSTANTS.SAFETY.FILTRATION}
+          </Section>
+        </div>
+        {CONSTANTS.SAFETY.DESCRIPTION}
+      </Section>
+
+      <Section
+        id="fans"
+        title="Fans and Enclosures"
+        openMap={openMap}
+        register={register}
+        setOne={setOne}
+        globalDefault={expandAll}
+      >
+        <div className="flex flex-col w-full gap-2 my-2">
+          <Section
+            id="speeds"
+            title="Fan Speeds and Pressure"
+            color="slate"
+            openMap={openMap}
+            register={register}
+            setOne={setOne}
+            globalDefault={expandAll}
+          >
+            {CONSTANTS.SAFETY.FANS}
+            <div className="flex flex-col gap-4 justify-center items-center my-4">
+              <VideoComponent
+                src={
+                  "https://www.youtube.com/embed/dnUz8IxtlMo?si=p1XhIQPNj0m2vJyk"
+                }
+              />
+            </div>
+          </Section>
+          {CONSTANTS.SAFETY.ENCLOSURE}
+          <div className="flex flex-col gap-4 justify-center items-center my-4">
+            <VideoComponent
+              src={
+                "https://www.youtube.com/embed/QkvE0x5SQVo?si=aQsYWx4UZPDH47kj"
+              }
+            />
           </div>
-        </Section>
-
-        <div className="text-2xl">The Basics</div>
-        <div className="flex flex-col w-full gap-4">
-          <Section expandAll={expandAll} title="Choosing Your Printer">
-            {CONSTANTS.STATIC.PRINTERS}
-          </Section>
-
-          <Section expandAll={expandAll} title="Filaments">
-            <div className="pt-4 flex flex-col gap-4">
-              <Section
-                expandAll={expandAll}
-                title="Types of Filament"
-                color="slate"
-              >
-                <div className="pt-4 flex flex-col gap-4">
-                  <div>{CONSTANTS.FILAMENTS.TYPES}</div>
-                  <div className="flex flex-col gap-4 justify-center items-center">
-                    <VideoComponent
-                      src={
-                        "https://www.youtube.com/embed/weeG9yOp3i4?si=ke2GphyxlrAVuF8K"
-                      }
-                    />
-                  </div>
-                </div>
-              </Section>
-              <Section
-                expandAll={expandAll}
-                title="Drying Your Filament"
-                color="slate"
-              >
-                {CONSTANTS.FILAMENTS.DRYING}
-              </Section>
-              <Section
-                expandAll={expandAll}
-                title="Multicolor Printing"
-                color="slate"
-              >
-                {CONSTANTS.FILAMENTS.MULTICOLOR}
-              </Section>
-
-              <div className="pt-2">{CONSTANTS.FILAMENTS.DESCRIPTION}</div>
-            </div>
-          </Section>
+          Make sure you do your own research and find out what's best for your setup.
         </div>
+      </Section>
+      
+      <div className="text-2xl">That's It!</div>
+      <Section
+        id="end"
+        title="Start Printing!"
+        openMap={openMap}
+        register={register}
+        setOne={setOne}
+        globalDefault={expandAll}
+      >
+        {CONSTANTS.STATIC.FINALE}
+      </Section>
 
-        <div className="text-2xl">Safety First</div>
-        <div className="flex flex-col w-full gap-4">
-          <Section expandAll={expandAll} title="Ventilation vs. Filtration">
-            <div className="pt-4 flex flex-col gap-4">
-              <Section expandAll={expandAll} title="Ventilation" color="slate">
-                <div className="pt-4 flex flex-col gap-4">
-                  <div>{CONSTANTS.SAFETY.VENTILATION}</div>
-                  <div>
-                    I HIGHLY recommend watching Aris Alder's video on
-                    ventilation below.{" "}
-                    <span className="text-red-500 font-semibold">
-                      If you have bad asthma or some sort of condition, I would
-                      say GO ALL OUT on ventilation and filtration,
-                      even if you're only printing with PLA. You only get one
-                      set of lungs.
-                    </span>
-                  </div>
-                  <div className="flex flex-col gap-4 justify-center items-center">
-                    <VideoComponent
-                      src={
-                        "https://www.youtube.com/embed/aRwxBNV3Ssc?si=AtHURzS9vZ5dVFxa"
-                      }
-                    />
-                  </div>
-                </div>
-              </Section>
-              <Section expandAll={expandAll} title="Filtration" color="slate">
-                <div className="pt-4 flex flex-col gap-4">
-                  <div>{CONSTANTS.SAFETY.FILTRATION}</div>
-                </div>
-              </Section>
-
-              <div className="pt-2">{CONSTANTS.SAFETY.DESCRIPTION}</div>
-            </div>
-          </Section>
-
-          <Section expandAll={expandAll} title="Enclosures and Fans">
-            <div className="pt-4 flex flex-col gap-4">
-              <Section
-                expandAll={expandAll}
-                title="Fan Speeds and Pressure"
-                color="slate"
-              >
-                <div className="pt-4 flex flex-col gap-4">
-                  {CONSTANTS.SAFETY.FANS}
-                  <div className="flex flex-col gap-4 justify-center items-center">
-                    <VideoComponent
-                      src={
-                        "https://www.youtube.com/embed/dnUz8IxtlMo?si=p1XhIQPNj0m2vJyk"
-                      }
-                    />
-                  </div>
-                </div>
-              </Section>
-              {CONSTANTS.SAFETY.ENCLOSURE}
-              <div className="flex flex-col gap-4 justify-center items-center">
-                <VideoComponent
-                  src={
-                    "https://www.youtube.com/embed/QkvE0x5SQVo?si=aQsYWx4UZPDH47kj"
-                  }
-                />
-              </div>
-              Make sure you do your own research and find out what's best for
-              your setup.
-            </div>
-          </Section>
-        </div>
-
-        <div className="text-2xl">That's It!</div>
-        <div className="flex flex-col w-full gap-4">
-          <Section expandAll={expandAll} title="Start Printing!">
-            {CONSTANTS.STATIC.FINALE}
-          </Section>
-        </div>
-
-        <div className="text-2xl">Common Problems & Fixes</div>
-        <div className="flex flex-col w-full gap-4">
-          <div className="italic text-sm">{CONSTANTS.PROBLEMS.WIP}</div>
-          <Section expandAll={expandAll} title="Lingering Fumes" color="red">
-            {CONSTANTS.PROBLEMS.LINGERING_FUMES}
-          </Section>
-          <Section expandAll={expandAll} title="A1 Mini WiFi Connection Failure" color="red">
-            {CONSTANTS.PROBLEMS.A1_MINI_GHZ}
-          </Section>
-        </div>
-
-        <div className="text-2xl">Concerns</div>
-        <div className="flex flex-col w-full gap-4">
-          <div className="italic text-sm">
-            Likewise with the Common Problems & Fixes Section, I wanted to add a
-            Section to address any concerns beyond the printers. If you have any
-            concerns and answers, feel free to contribute!
-          </div>
-          <Section expandAll={expandAll} title="Food Safety" color="yellow">
-            {CONSTANTS.CONCERNS.FOOD_SAFETY}
-          </Section>
-        </div>
-
-        {/* <div className="text-2xl">Le Science</div>
-        <div className="flex flex-col w-full gap-4">
-          <Section expandAll={expandAll} title="WIP" color="green">
-            {CONSTANTS.SCIENCE.WIP}
-          </Section>
-        </div> */}
+      <div className="text-2xl">Common Problems & Fixes</div>
+      {CONSTANTS.PROBLEMS.WIP}
+      <Section
+        id="fummes"
+        title="Lingering Fumes"
+        color="red"
+        openMap={openMap}
+        register={register}
+        setOne={setOne}
+        globalDefault={expandAll}
+      >
+        {CONSTANTS.PROBLEMS.LINGERING_FUMES}
+      </Section>
+      <Section
+        id="wifi"
+        title="A1 Mini WiFi Problems"
+        color="red"
+        openMap={openMap}
+        register={register}
+        setOne={setOne}
+        globalDefault={expandAll}
+      >
+        {CONSTANTS.PROBLEMS.A1_MINI_GHZ}
+      </Section>
+      
+      <div className="text-2xl">Concerns</div>
+      <div className="italic text-sm">
+        Likewise with the Common Problems & Fixes Section, I wanted to add a
+        Section to address any concerns beyond the printers. If you have any
+        concerns and answers, feel free to contribute!
+      </div>
+      <Section
+        id="food"
+        title="Food Safety"
+        color="yellow"
+        openMap={openMap}
+        register={register}
+        setOne={setOne}
+        globalDefault={expandAll}
+      >
+        {CONSTANTS.CONCERNS.FOOD_SAFETY}
+      </Section>
       </div>
       <Footer />
     </div>
