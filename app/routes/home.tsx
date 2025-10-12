@@ -1,6 +1,7 @@
 import { useLoaderData, type LoaderFunctionArgs } from "react-router"
 import type { Route } from "./+types/home"
 import About from "~/about/About"
+import { CONSTANTS as content } from "../constants/constants"
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -12,6 +13,7 @@ export function meta({}: Route.MetaArgs) {
   ]
 }
 
+/*
 const FAILURE_MSG =
   "Failed to load topic. Please refresh the page or try again later."
 
@@ -71,6 +73,7 @@ async function get_topic(topic: string) {
   }
 }
 
+
 export async function loader({ request }: LoaderFunctionArgs) {
   const statics = await get_topic("static")
   const filaments = await get_topic("filaments")
@@ -88,8 +91,9 @@ export async function loader({ request }: LoaderFunctionArgs) {
 
   return content
 }
+*/
 
 export default function Home() {
-  const content = useLoaderData<typeof loader>()
+  // const content = useLoaderData<typeof loader>()
   return <About CONSTANTS={content} />
 }
