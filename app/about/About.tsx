@@ -146,6 +146,13 @@ export default function About({ CONSTANTS }: { CONSTANTS: Record<string, any> })
             globalDefault={expandAll}
           >
             {CONSTANTS.FILAMENTS.TYPES}
+            <div className="flex flex-col gap-4 justify-center items-center my-4">
+              <VideoComponent
+                src={
+                  "https://www.youtube.com/embed/weeG9yOp3i4?si=gU-lsQLRR4XPap-X"
+                }
+              />
+            </div>
           </Section>
           <Section
             id="drying"
